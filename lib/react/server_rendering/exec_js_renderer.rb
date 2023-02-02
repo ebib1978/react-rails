@@ -36,8 +36,8 @@ module React
 
       def render_from_parts(before, main, after)
         js_code = compose_js(before, main, after)
-        File.write(Rails.root.join("tmp/latest_server_bundle.js"), js_code, mode: "w+")
-        puts 'Dumped to Rails.root.join("tmp/latest_server_bundle.js")'
+        File.write("./tmp/latest_server_bundle.js", js_code, mode: "w+")
+        puts "root is #{Dir.pwd}"
         # @context.eval(js_code).html_safe
       end
 
