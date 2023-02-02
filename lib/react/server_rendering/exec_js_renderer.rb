@@ -36,7 +36,9 @@ module React
 
       def render_from_parts(before, main, after)
         js_code = compose_js(before, main, after)
-        @context.eval(js_code).html_safe
+        File.write(Rails.root.join("tmp/latest_server_bundle.js"), js_code, mode: "w+")
+        puts 'Dumped to Rails.root.join("tmp/latest_server_bundle.js")'
+        # @context.eval(js_code).html_safe
       end
 
       def main_render(component_name, props, prerender_options)
