@@ -10,6 +10,7 @@ module React
 
       def initialize(options={})
         js_code = options[:code] || raise('Pass `code:` option to instantiate a JS context!')
+        File.write("./tmp/latest_js_context.js", js_code, mode: "w+")
         @context = ExecJS.compile(GLOBAL_WRAPPER + js_code)
       end
 
@@ -36,7 +37,7 @@ module React
 
       def render_from_parts(before, main, after)
         js_code = compose_js(before, main, after)
-        File.write("./tmp/latest_server_bundle.js", js_code, mode: "w+")
+        File.write("./tmp/latest_js_request.js", js_code, mode: "w+")
         puts "root is #{Dir.pwd}"
         # @context.eval(js_code).html_safe
       end
